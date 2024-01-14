@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="450.0" prefWidth="315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.borghii.jdbc.MainController">
+   <children>
+      <ImageView fitHeight="443.0" fitWidth="315.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/pngtree-boss-and-employee-shaking-hands-at-work-png-image_8930561.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="14.0" prefHeight="64.0" prefWidth="303.0" text="Administraror employees">
+         <font>
+            <Font name="Castellar" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
