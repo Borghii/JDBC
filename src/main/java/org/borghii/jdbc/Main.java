@@ -9,24 +9,17 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class Main extends Application {
-
-
-
-//    @Override
-//    public void init() throws Exception {
-//        super.init();
-//        MenuController.mapa.put("viewAdministrator.fxml","viewLogin.fxml");
-//    }
+    @Override
+    public void init() throws Exception {
+        super.init();
+        MenuController.mapa.put("AddView.fxml","MainView.fxml");
+        MenuController.mapa.put("ModifyView.fxml","MainView.fxml");
+        MenuController.mapa.put("EmployeesView.fxml","MainView.fxml");
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("viewLogin.fxml"));
-
-        Scene scene = new Scene(fxmlLoader.load());
-        
-        stage.setTitle("Login");
-        stage.setScene(scene);
-        stage.show();
+        MenuController.openNewStage("MainView.fxml");
     }
 
     public static void main(String[] args) {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="389.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.borghii.jdbc.AddController">
+   <children>
+      <Label alignment="CENTER" layoutX="-3.0" layoutY="25.0" prefHeight="27.0" prefWidth="291.0" text="Add Employee" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Castellar" size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="85.0" layoutY="111.0" prefHeight="27.0" prefWidth="103.0" text="Name" textAlignment="CENTER">
+         <font>
+            <Font name="Castellar" size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="71.0" layoutY="195.0" prefHeight="27.0" prefWidth="132.0" text="SURname" textAlignment="CENTER">
+         <font>
+            <Font name="Castellar" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="name" layoutX="68.0" layoutY="151.0" />
+      <TextField fx:id="surname" layoutX="68.0" layoutY="240.0" />
+      <Button layoutX="97.0" layoutY="320.0" mnemonicParsing="false" onAction="#onAddEmployee" prefHeight="25.0" prefWidth="91.0" text="ADD">
+         <font>
+            <Font name="Castellar" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -16,17 +16,17 @@ public class MenuController {
 
     static HashMap<String, String > mapa = new HashMap<>();
 
-    public void closeCurrentStage(TextField textField) {
+    static public void closeCurrentStage(TextField textField) {
         Stage stage = (Stage) textField.getScene().getWindow();
         stage.close();
     }
-    public void closeCurrentStage(Button button) {
+    static public void closeCurrentStage(Button button) {
         Stage stage = (Stage) button.getScene().getWindow();
         stage.close();
     }
 
 
-    public void openNewStage(String fxmlFileName) {
+    static public void openNewStage(String fxmlFileName) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MenuController.class.getResource(fxmlFileName));
             Scene scene = new Scene(fxmlLoader.load());
@@ -36,7 +36,7 @@ public class MenuController {
             stage.setScene(scene);
             stage.show();
 
-            if (!fxmlFileName.equals("viewLogin.fxml"))
+            if (!fxmlFileName.equals("MainView.fxml"))
                 stage.setOnCloseRequest(e->{
                     openNewStage(getFxmlFather(fxmlFileName));
                 });
@@ -47,7 +47,7 @@ public class MenuController {
         }
     }
 
-    public String getFxmlFather(String fxml){
+    static private String getFxmlFather(String fxml){
         return mapa.get(fxml);
     }
 

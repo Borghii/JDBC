@@ -2,31 +2,29 @@ package org.borghii.jdbc.model;
 import java.sql.*;
 
 public class DBConnection {
-    public static void main(String[] args) {
-        // Datos de conexión
-        String url = "jdbc:mysql://localhost:3306/empleados";
+
+    private static Connection connection() throws SQLException{
+        String url = "jdbc:mysql://localhost:3306/employees";
         String user = "root";
-        String password = "";
+        String password = "1234";
+        return DriverManager.getConnection(url,user,password);
+    }
 
-        try {
-            // 1. CREAR CONEXION
-            Connection connection = DriverManager.getConnection(url, user, password);
-            // VERIFICAR CONEXION EXISTOSA
-            if (connection != null) {
-                System.out.println("Conexión exitosa a la base de datos.");
-                // 2. CREAR OBJETO STATEMENT
-                Statement statement = connection.createStatement();
-                // 3. EJECUTAR SQL
+    public static void addEmployee(Employee employee) {
+        String query = "INSERT INTO employee_data (NAME , SURNAME, HIRE_DATE) VALUES (?, ?, ?)";
 
-                String instrucctionSql = "INSERT INTO datos_empleados (ID_EMPLOYEE, NAME, SURNAME, HIRE_DATE) VALUES (1,'Tomas','Borghi','2003-07-05')";
+        try (Connection conn = connection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-                statement.executeUpdate(instrucctionSql);
+            pstmt.setString(1, employee.getName());
+            pstmt.setString(2, employee.getSurname());
+            pstmt.setDate(3, Date.valueOf(employee.getHireDate().plusMonths(2)));
 
-                // Cerrar la conexión cuando hayas terminado
-                connection.close();
-            }
+            pstmt.executeUpdate();
+            System.out.println("Employee added correctly");
+
         } catch (SQLException e) {
-            System.err.println("Error de conexión a la base de datos: " + e.getMessage());
+            System.err.println("Error adding employee: " + e.getMessage());
         }
     }
 
