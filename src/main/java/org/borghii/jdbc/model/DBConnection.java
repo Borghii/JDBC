@@ -31,8 +31,7 @@ public class DBConnection  {
             return true;
 
         } catch (SQLException e) {
-            System.err.println("Error adding employee: " + e.getMessage());
-            MenuController.setAlert(Alert.AlertType.ERROR,"Employee not added");
+            MenuController.setAlert(Alert.AlertType.ERROR,"Error adding employee: " + e.getMessage());
             return false;
         }
     }
