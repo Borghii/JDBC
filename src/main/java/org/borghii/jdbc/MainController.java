@@ -1,26 +1,30 @@
 package org.borghii.jdbc;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class MainController {
+public class MainController extends MenuController {
+
 
     @FXML
     Button addButton;
 
     @FXML
     public void addEmployee(){
-        MenuController.closeCurrentStage(addButton);
-        MenuController.openNewStage("AddView.fxml");
+        closeCurrentStage(addButton);
+        openNewStage("AddView.fxml");
     }
     @FXML
     public void modifyEmployee(){
-        MenuController.openNewStage("ModifyView.fxml");
+        closeCurrentStage(addButton);
+        openNewStage("ModifyView.fxml");
     }
     @FXML
     public void viewEmployees(){
-        MenuController.openNewStage("EmployeesView.fxml");
+        closeCurrentStage(addButton);
+        openNewStage("EmployeesView.fxml");
     }
 
 }

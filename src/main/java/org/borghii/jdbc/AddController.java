@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import org.borghii.jdbc.model.DBConnection;
 import org.borghii.jdbc.model.Employee;
 
-public class AddController {
+public class AddController extends MenuController {
     @FXML
     TextField name;
     @FXML
@@ -15,7 +15,8 @@ public class AddController {
     @FXML
     public void onAddEmployee(){
         Employee employee = new Employee(name.getText(),surname.getText());
-        DBConnection.addEmployee(employee);
+        if (DBConnection.addEmployee(employee))
+            cleanCells(name,surname);
     }
 
 
