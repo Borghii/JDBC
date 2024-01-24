@@ -7,11 +7,14 @@ public class Employee {
     private String name;
     private String surname;
     private LocalDate hireDate;
+    enum State{ACTIVE, INACTIVE}
+    State state;
 
     public Employee(String name, String surname) {
         this.name = name;
         this.surname = surname;
         this.hireDate = LocalDate.now();
+        this.state = State.ACTIVE;
     }
 
     public String getName() {
@@ -36,6 +39,10 @@ public class Employee {
 
     public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
+    }
+
+    public State getState() {
+        return state;
     }
 
     @Override

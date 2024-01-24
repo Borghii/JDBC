@@ -70,4 +70,10 @@ public class MenuController {
         textField1.clear();
         textField2.clear();
     }
+    void cleanCells(TextField textField1, TextField textField2, TextField textField3, TextField textField4){
+        textField1.clear();
+        textField2.clear();
+        textField3.clear();
+        textField4.clear();
+    }
 }

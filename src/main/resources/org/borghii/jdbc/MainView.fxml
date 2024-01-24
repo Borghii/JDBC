@@ -23,7 +23,7 @@
       </Label>
       <VBox layoutX="58.0" layoutY="90.0" prefHeight="313.0" prefWidth="202.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="71.0" prefWidth="202.0" text="ADD EMPLOYEE" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addEmployee" prefHeight="71.0" prefWidth="202.0" text="HIRE EMPLOYEE" />
             <Separator prefHeight="47.0" prefWidth="202.0" visible="false" />
             <Button mnemonicParsing="false" onAction="#modifyEmployee" prefHeight="73.0" prefWidth="205.0" text="MODIFY EMPLOYEE" />
             <Separator prefHeight="56.0" prefWidth="202.0" visible="false" />

@@ -1,13 +1,11 @@
 package org.borghii.jdbc.model;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import org.borghii.jdbc.MenuController;
-
 import java.sql.*;
+import java.time.LocalDate;
 
 public class DBConnection  {
-
-
 
     private static Connection connection() throws SQLException{
         String url = "jdbc:mysql://localhost:3306/employees";
@@ -17,14 +15,16 @@ public class DBConnection  {
     }
 
     public static boolean addEmployee(Employee employee) {
-        String query = "INSERT INTO employee_data (NAME , SURNAME, HIRE_DATE) VALUES (?, ?, ?)";
+        String query = "INSERT INTO employee_data (NAME , SURNAME, HIRE_DATE,STATE) VALUES (?, ?, ?,?)";
 
         try (Connection conn = connection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, employee.getName());
             pstmt.setString(2, employee.getSurname());
-            pstmt.setDate(3, Date.valueOf(employee.getHireDate().plusMonths(2)));
+            pstmt.setDate(3, Date.valueOf(employee.getHireDate()));
+            pstmt.setString(4, String.valueOf(employee.getState()));
+
             pstmt.executeUpdate();
 
             MenuController.setAlert(Alert.AlertType.CONFIRMATION,"Employee added");
@@ -36,6 +36,92 @@ public class DBConnection  {
         }
     }
 
+    public static void searchEmployee(TextField NAME, TextField SURNAME, TextField HIRE_DATE, int id){
 
+        String query = "SELECT * FROM employee_data WHERE ID_EMPLOYEE = ? ";
+
+        try (Connection conn = connection();
+            PreparedStatement pstmt = conn.prepareStatement(query)){
+
+            pstmt.setInt(1,id);
+
+            try (ResultSet rs = pstmt.executeQuery()){
+
+                    if (rs.next()){
+                        if (rs.getDate("UNHIRE_DATE")==null) {
+                            NAME.setText(rs.getString("NAME"));
+                            SURNAME.setText(rs.getString("SURNAME"));
+                            HIRE_DATE.setText(String.valueOf(rs.getDate("HIRE_DATE")));
+                            MenuController.setAlert(Alert.AlertType.CONFIRMATION, "Employee found");
+                        }else{
+                            MenuController.setAlert(Alert.AlertType.INFORMATION,"Employee: "+rs.getString("SURNAME")+" no longer employed since: "+rs.getDate("UNHIRE_DATE"));
+                        }
+                    }else {
+                        MenuController.setAlert(Alert.AlertType.ERROR,"Employee with id: "+id+" does not exist");
+                    }
+
+            }
+        }catch (SQLException e){
+            MenuController.setAlert(Alert.AlertType.ERROR,"Employee not found: " + e.getMessage());
+        }
+
+    }
+
+    public static boolean modifyEmployee(TextField NAME, TextField SURNAME, TextField HIRE_DATE, int id){
+        String query = "UPDATE employee_data SET NAME= ?, SURNAME= ?, HIRE_DATE= ? WHERE ID_EMPLOYEE= ?";
+
+        try(Connection conn = connection();
+            PreparedStatement pstmt = conn.prepareStatement(query)){
+
+            pstmt.setString(1,NAME.getText());
+            pstmt.setString(2,SURNAME.getText());
+            pstmt.setDate(3,Date.valueOf(HIRE_DATE.getText()));
+            pstmt.setInt(4,id);
+            pstmt.executeUpdate();
+
+            MenuController.setAlert(Alert.AlertType.CONFIRMATION,"Employee modify correctly");
+
+            return true;
+
+
+        }catch (SQLException e){
+            MenuController.setAlert(Alert.AlertType.ERROR,"Employee not modify: " + e.getMessage());
+            return false;
+
+        }catch (IllegalArgumentException e){
+            MenuController.setAlert(Alert.AlertType.ERROR,"Format of date wrong: (yyyy-mm-dd)");
+            return false;
+        }
+    }
+    public static boolean deleteEmployee(int id){
+        String query = "UPDATE employee_data SET UNHIRE_DATE=?, STATE=? WHERE ID_EMPLOYEE= ?";
+        try (Connection conn = connection();
+             PreparedStatement pstmt = conn.prepareStatement(query)){
+
+            pstmt.setDate(1, Date.valueOf(LocalDate.now().plusDays(100)));
+            pstmt.setString(2,String.valueOf(Employee.State.INACTIVE));
+            pstmt.setInt(3,id);
+
+            pstmt.executeUpdate();
+
+            MenuController.setAlert(Alert.AlertType.CONFIRMATION,"Employee unhired correctly");
+
+            return true;
+
+
+//            if (pstmt.executeUpdate()>0){
+//                MenuController.setAlert(Alert.AlertType.CONFIRMATION,"Employee delete correctly");
+//                return true;
+//            }else {
+//                MenuController.setAlert(Alert.AlertType.ERROR,"Employee not delete: ");
+//                return false;
+//            }
+
+
+        }catch (SQLException e){
+            MenuController.setAlert(Alert.AlertType.ERROR,"Employee not delete: " + e.getMessage());
+            return false;
+        }
+    }
 
 }
