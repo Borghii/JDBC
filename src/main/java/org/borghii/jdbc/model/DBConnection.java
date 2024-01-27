@@ -1,5 +1,7 @@
 package org.borghii.jdbc.model;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import org.borghii.jdbc.MenuController;
 import java.sql.*;
@@ -122,6 +124,42 @@ public class DBConnection  {
             MenuController.setAlert(Alert.AlertType.ERROR,"Employee not delete: " + e.getMessage());
             return false;
         }
+    }
+
+    static public void setTable(ObservableList<Employee> employees){
+        String query = "SELECT * FROM employee_data";
+
+        try (Connection conn = connection();
+             PreparedStatement stmt = conn.prepareStatement(query))   {
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                Date unhire = rs.getDate("UNHIRE_DATE");
+                LocalDate unHire = null;
+
+                if (!(unhire==null))
+                    unHire = unhire.toLocalDate();
+
+                Employee employee = new Employee(rs.getInt("ID_EMPLOYEE"),unHire,
+                                    rs.getString("NAME"),rs.getString("SURNAME"),rs.getDate("HIRE_DATE").toLocalDate(),
+                                     Employee.State.valueOf(rs.getString("STATE")));
+                employees.add(employee);
+
+
+
+
+                System.out.println(employee);
+            }
+
+
+
+
+
+        }catch (SQLException e){
+            MenuController.setAlert(Alert.AlertType.ERROR,"Employees doesn`t found: " + e.getMessage());
+        }
+
     }
 
 }

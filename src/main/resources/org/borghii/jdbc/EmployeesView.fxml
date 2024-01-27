@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.borghii.jdbc.EmployeesController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="370.0" prefWidth="239.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.borghii.jdbc.EmployeesController">
+   <children>
+      <AnchorPane prefHeight="389.0" prefWidth="624.0" style="-fx-background-color: pink;">
+         <children>
+            <Label alignment="CENTER" layoutX="157.0" layoutY="21.0" prefHeight="27.0" prefWidth="291.0" text="view Employees" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font name="Castellar" size="21.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableEmployees" layoutX="25.0" layoutY="114.0" prefHeight="242.0" prefWidth="572.0" style="-fx-background-color: #B1FFFF;">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="75.0" text="ID EMPLOYEE" />
+                <TableColumn fx:id="colName" prefWidth="75.0" text="NAME" />
+                  <TableColumn fx:id="colSurname" prefWidth="75.0" text="SURNAME" />
+                  <TableColumn fx:id="colHire" prefWidth="75.0" text="HIRE DATE" />
+                  <TableColumn fx:id="colUnhire" prefWidth="75.0" text="UNHIRE DATE" />
+                  <TableColumn fx:id="colState" prefWidth="75.0" text="STATE" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
