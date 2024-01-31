@@ -8,17 +8,17 @@
    <children>
       <AnchorPane layoutX="1.0" layoutY="6.0" prefHeight="389.0" prefWidth="291.0">
          <children>
-            <Label alignment="CENTER" layoutX="-3.0" layoutY="22.0" prefHeight="27.0" prefWidth="291.0" text="modify Employee" textAlignment="CENTER" underline="true">
+            <Label alignment="CENTER" layoutX="-3.0" layoutY="22.0" prefHeight="27.0" prefWidth="291.0" text="MODIFY EMPLOYEES" textAlignment="CENTER" underline="true">
                <font>
                   <Font name="Castellar" size="21.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="85.0" layoutY="117.0" prefHeight="27.0" prefWidth="103.0" text="Name" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="85.0" layoutY="117.0" prefHeight="27.0" prefWidth="103.0" text="NAME" textAlignment="CENTER">
                <font>
                   <Font name="Castellar" size="21.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="70.0" layoutY="185.0" prefHeight="27.0" prefWidth="132.0" text="SURname" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="70.0" layoutY="185.0" prefHeight="27.0" prefWidth="132.0" text="SURNAME" textAlignment="CENTER">
                <font>
                   <Font name="Castellar" size="21.0" />
                </font>
@@ -30,23 +30,23 @@
                   <Font name="Castellar" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="40.0" layoutY="346.0" mnemonicParsing="false" onAction="#onModifyEmployee" prefHeight="25.0" prefWidth="91.0" text="modify">
+            <Button layoutX="40.0" layoutY="346.0" mnemonicParsing="false" onAction="#onModifyEmployee" prefHeight="25.0" prefWidth="91.0" text="MODIFY">
                <font>
                   <Font name="Castellar" size="15.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="40.0" layoutY="74.0" prefHeight="27.0" prefWidth="39.0" text="id" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="40.0" layoutY="74.0" prefHeight="27.0" prefWidth="39.0" text="ID" textAlignment="CENTER">
                <font>
                   <Font name="Castellar" size="21.0" />
                </font>
             </Label>
             <TextField fx:id="id" layoutX="82.0" layoutY="75.0" prefHeight="25.0" prefWidth="39.0" />
-            <Button layoutX="157.0" layoutY="73.0" mnemonicParsing="false" onAction="#onSearchEmployee" prefHeight="25.0" prefWidth="91.0" text="search">
+            <Button layoutX="157.0" layoutY="73.0" mnemonicParsing="false" onAction="#onSearchEmployee" prefHeight="25.0" prefWidth="91.0" text="SEARCH">
                <font>
                   <Font name="Castellar" size="15.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="77.0" layoutY="259.0" prefHeight="27.0" prefWidth="132.0" text="hire date" textAlignment="CENTER">
+            <Label alignment="CENTER" layoutX="77.0" layoutY="259.0" prefHeight="27.0" prefWidth="132.0" text="HIRE DATE" textAlignment="CENTER">
                <font>
                   <Font name="Castellar" size="21.0" />
                </font>

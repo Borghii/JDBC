@@ -16,26 +16,51 @@ public class DBConnection  {
         return DriverManager.getConnection(url,user,password);
     }
 
-    public static boolean addEmployee(Employee employee) {
-        String query = "INSERT INTO employee_data (NAME , SURNAME, HIRE_DATE,STATE) VALUES (?, ?, ?,?)";
-
+    private static boolean verifyDuplicates(String name, String surname){
+        String query = "SELECT* FROM employee_data WHERE NAME = ? AND SURNAME = ?";
         try (Connection conn = connection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+             PreparedStatement pstmt = conn.prepareStatement(query) ){
 
-            pstmt.setString(1, employee.getName());
-            pstmt.setString(2, employee.getSurname());
-            pstmt.setDate(3, Date.valueOf(employee.getHireDate()));
-            pstmt.setString(4, String.valueOf(employee.getState()));
+            pstmt.setString(1,name.strip());
+            pstmt.setString(2,surname.strip());
 
-            pstmt.executeUpdate();
+            try (ResultSet rs = pstmt.executeQuery()){
+                return !(rs.next());
+            }
 
-            MenuController.setAlert(Alert.AlertType.CONFIRMATION,"Employee added");
-            return true;
-
-        } catch (SQLException e) {
+        }catch(SQLException e){
             MenuController.setAlert(Alert.AlertType.ERROR,"Error adding employee: " + e.getMessage());
             return false;
         }
+
+    }
+
+    public static boolean addEmployee(Employee employee) {
+        String query = "INSERT INTO employee_data (NAME , SURNAME, HIRE_DATE,STATE) VALUES (?, ?, ?,?)";
+
+        if (verifyDuplicates(employee.getName(),employee.getSurname())) {
+            try (Connection conn = connection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+                pstmt.setString(1, employee.getName());
+                pstmt.setString(2, employee.getSurname());
+                pstmt.setDate(3, Date.valueOf(employee.getHireDate()));
+                pstmt.setString(4, String.valueOf(employee.getState()));
+
+                pstmt.executeUpdate();
+
+                MenuController.setAlert(Alert.AlertType.CONFIRMATION, "Employee added");
+                return true;
+
+            } catch (SQLException e) {
+                MenuController.setAlert(Alert.AlertType.ERROR, "Error adding employee: " + e.getMessage());
+                return false;
+            }
+        }else {
+            MenuController.setAlert(Alert.AlertType.ERROR,"Duplicate employee");
+            return false;
+        }
+
     }
 
     public static void searchEmployee(TextField NAME, TextField SURNAME, TextField HIRE_DATE, int id){
@@ -146,15 +171,7 @@ public class DBConnection  {
                                      Employee.State.valueOf(rs.getString("STATE")));
                 employees.add(employee);
 
-
-
-
-                System.out.println(employee);
             }
-
-
-
-
 
         }catch (SQLException e){
             MenuController.setAlert(Alert.AlertType.ERROR,"Employees doesn`t found: " + e.getMessage());

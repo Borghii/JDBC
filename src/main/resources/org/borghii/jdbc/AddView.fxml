@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="389.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.borghii.jdbc.AddController">
+<AnchorPane prefHeight="389.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.borghii.jdbc.AddController">
    <children>
-      <Label alignment="CENTER" layoutX="-3.0" layoutY="25.0" prefHeight="27.0" prefWidth="291.0" text="Add Employee" textAlignment="CENTER" underline="true">
+      <Label alignment="CENTER" layoutX="-3.0" layoutY="25.0" prefHeight="27.0" prefWidth="291.0" text="ADD EMPLOYEE" textAlignment="CENTER" underline="true">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="85.0" layoutY="111.0" prefHeight="27.0" prefWidth="103.0" text="NAME" textAlignment="CENTER">
          <font>
             <Font name="Castellar" size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="85.0" layoutY="111.0" prefHeight="27.0" prefWidth="103.0" text="Name" textAlignment="CENTER">
-         <font>
-            <Font name="Castellar" size="21.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="71.0" layoutY="195.0" prefHeight="27.0" prefWidth="132.0" text="SURname" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="71.0" layoutY="195.0" prefHeight="27.0" prefWidth="132.0" text="SURNAME" textAlignment="CENTER">
          <font>
             <Font name="Castellar" size="21.0" />
          </font>
